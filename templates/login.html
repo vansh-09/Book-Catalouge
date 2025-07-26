@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% block content %}
+<div class="auth-wrapper">
+  <div class="auth-box">
+    <h2 class="auth-title">Login</h2>
+    <form action="{{ url_for('login') }}" method="POST">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="flash-message {{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %}
+  </div>
+</div>
+
+<script>
+  setTimeout(() => {
+    const messages = document.querySelectorAll(".flash-message");
+    messages.forEach((msg) => {
+      msg.style.transition = "opacity 0.5s ease";
+      msg.style.opacity = "0";
+      setTimeout(() => msg.remove(), 500);
+    });
+  }, 3000);
+</script>
+{% endblock %}
