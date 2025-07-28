@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.env
+*.env
+instance/
+.vscode/
+*.sqlite3
+*.db
+*.log
+.DS_Store
+*.otf
+*.ttf
+/static/covers/
+._*

@@ -2,23 +2,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ title if title else "Book Catalog App" }}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+  />
+  <link
+    rel="icon"
+    href="{{ url_for('static', filename='favicon.ico') }}"
+    type="image/x-icon"
+  />
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-brand">📚 BookCatalog</div>
+    <div class="nav-brand">BookCatalog</div>
 
     <button class="hamburger" id="hamburger">&#9776;</button>
 
     <ul class="nav-links" id="nav-links">
       <li><a href="{{ url_for('home') }}">Home</a></li>
+      {% if session.username %}
+      <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
       <li><a href="{{ url_for('login') }}">Login</a></li>
       <li><a href="{{ url_for('register') }}">Register</a></li>
+      {% endif %}
     </ul>
   </nav>
 
-  <div class="page-wrapper">
-    {% block content %}{% endblock %}
-  </div>
+  <div class="page-wrapper">{% block content %}{% endblock %}</div>
 </body>

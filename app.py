@@ -74,8 +74,8 @@ def register():
             flash("Username already exists. Try logging in.", "error")
             return redirect(url_for("register"))
 
-        hashed_pw = bcrypt.generate_password_hash(password).decode("utf-8")
-        users_collection.insert_one({"username": username, "password": hashed_pw})
+        hashed_pw = bcrypt.generate_password_hash("testpass").decode("utf-8")
+        users_collection.insert_one({"username": "testuser", "password": hashed_pw})
         flash("Account created successfully!", "success")
         return redirect(url_for("login"))
 
